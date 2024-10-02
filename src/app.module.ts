@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { FormDataModule } from './form-data/form-data.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { FeedbackModule } from './feedback/feedback.module';
+import { typeOrmConfig } from './feedback/config/typeorm.config'; 
 
 @Module({
-  imports: [FormDataModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    TypeOrmModule.forRoot(typeOrmConfig),  // This provides the DataSource
+    FeedbackModule
+  ],
 })
 export class AppModule {}
